@@ -68,9 +68,11 @@ INSERT INTO MC_FUNCIONARIO (CD_DEPTO, NM_FUNCIONARIO, CD_GERENTE, DT_NASCIMENTO,
 
 SELECT * FROM MC_FUNCIONARIO;
 
+
+
 -- C) Popular 2 ESTADOS do Brasil. Associe no mínimo 2 cidades para cada Estado. Para cada cidade, associe no mínimo 1 bairro e para cada bairro associe 2 endereços, totalizando no mínimo 8 endereços diferentes. 
 
-SELECT * FROM MC_ESTADO;
+
 
 -- Populando dois estados do Brasil
 
@@ -78,6 +80,8 @@ INSERT INTO MC_ESTADO (SG_ESTADO, NM_ESTADO) VALUES
 ('SP', 'São Paulo');
 INSERT INTO MC_ESTADO (SG_ESTADO, NM_ESTADO) VALUES
 ('RJ', 'Rio de Janeiro');
+
+SELECT * FROM MC_ESTADO;
 
 
 -- Populando três cidade para cada estado
@@ -181,16 +185,22 @@ INSERT INTO MC_LOGRADOURO (CD_BAIRRO, NM_LOGRADOURO, NR_CEP) VALUES
 SELECT * FROM MC_LOGRADOURO;
 
 
+
 -- D) Cadastre na tabela de ENDERECO FUNCIONARIO os endereços de 2 funcionários à sua escolha
 
-SELECT * FROM MC_END_FUNC;
+
 
 INSERT INTO MC_END_FUNC (CD_FUNCIONARIO, CD_LOGRADOURO, NR_END, DT_INICIO, ST_END) VALUES
 (5, 16, 118, TO_DATE('12/05/2022', 'DD/MM/YYYY'), 'A');
 INSERT INTO MC_END_FUNC (CD_FUNCIONARIO, CD_LOGRADOURO, NR_END, DT_INICIO, ST_END) VALUES
 (10, 6, 21, TO_DATE('14/05/2023', 'DD/MM/YYYY'), 'A');
 
+SELECT * FROM MC_END_FUNC;
+
+
+
 -- E) Cadastre no mínimo 2 CLIENTES PESSOAS FÍSICAS e 1 CLIENTES PESSOA JÚRIDICA e associe no mínimo 1 endereço para cada cliente
+
 
 -- Inserindo clientes na tabela CLIENTE
 
@@ -250,8 +260,157 @@ INSERT INTO MC_CLIENTE (NM_CLIENTE, QT_ESTRELAS, VL_MEDIO_COMPRA, ST_CLIENTE, DS
 ('Multimia Automotiva LTDA', 5, 722.30, 'A', 'automultimidia@automult.com.br', '(011)921205221', 'multimidia', 'multimidiaauto212');
 
 /* Não foi possivel incluir esse novo cliente. A coluna "NM_LOGIN", existente na tabela MC_CLIENTE possui uma restrição UNIQUE, no qual garante a exclusividade dos valores cadastrados na mesma
-ou seja, não permite a duplicidade de valores. Assim, no momento da tentativa de realizar o cadastro de um cliente com um valor de Login já existente na tabela (assim, tentando violar a restrição UNIQUE
-, o cliente não é cadastrado e é exibido o erro de "restrição exclusiva" */
+ou seja, não permite a duplicidade de valores. Assim, no momento da tentativa de realizar o cadastro de um cliente com um valor de Login já existente na tabela (assim, tentando violar a restrição UNIQUE)
+, o cliente não é cadastrado e é exibido o erro de "restrição exclusiva". Para que o cadastro do cliente seja realizado será necessário alterar o valor de Login para um não existente na tabela */
 
 
 COMMIT;
+
+
+-- G) Cadastre as seguintes categorias para os produtos: Eletrônicos, Esporte e Lazer;  Pet Shop.
+
+INSERT INTO MC_CATEGORIA_PROD (TP_CATEGORIA, DS_CATEGORIA, DT_INICIO, ST_CATEGORIA) VALUES
+('P', 'Eletrônicos', TO_DATE('01/02/2023', 'DD/MM/YYYY'), 'A');
+INSERT INTO MC_CATEGORIA_PROD (TP_CATEGORIA, DS_CATEGORIA, DT_INICIO, ST_CATEGORIA) VALUES
+('P', 'Esporte e Lazer', TO_DATE('04/03/2023', 'DD/MM/YYYY'), 'A');
+INSERT INTO MC_CATEGORIA_PROD (TP_CATEGORIA, DS_CATEGORIA, DT_INICIO, ST_CATEGORIA) VALUES
+('P', 'Pet Shop', TO_DATE('05/03/2023', 'DD/MM/YYYY'), 'A');
+
+SELECT * FROM MC_CATEGORIA_PROD;
+
+
+-- H) Cadastre 5 produtos e associe as categorias adequadas ao produto.
+
+INSERT INTO MC_PRODUTO (CD_CATEGORIA, NR_CD_BARRAS_PROD, DS_PRODUTO, VL_UNITARIO, TP_EMBALAGEM, ST_PRODUTO, VL_PERC_LUCRO, DS_COMPLETA_PROD) VALUES
+(1, 'A2249127102841', 'Notebook Inspiron 15', 2799.00, 'Média', 'A', 0.70, 'Notebook para o seu dia a dia. Desfrute
+de um desempenho ágil, porém silencioso, com processadores Intel Core de até 12 geração combinados com SSD PCIe. Conte também com configurações disponíveis com placa de vídeo integrada Intel Iris Xe');
+INSERT INTO MC_PRODUTO (CD_CATEGORIA, NR_CD_BARRAS_PROD, DS_PRODUTO, VL_UNITARIO, TP_EMBALAGEM, ST_PRODUTO, VL_PERC_LUCRO, DS_COMPLETA_PROD) VALUES
+(1, 'A2328401725402', 'Iphone XR', 1699.99, 'Pequena', 'A', 0.50, 'A tela do iPhone XR tem bordas arredondadas que se ajustam ao design curvo do telefone
+dentro da sua forma retangular. Quando medida como um retângulo, a tela tem 6,06 polegadas na diagonal. A área real de visualização é menor.');
+INSERT INTO MC_PRODUTO (CD_CATEGORIA, NR_CD_BARRAS_PROD, DS_PRODUTO, VL_UNITARIO, TP_EMBALAGEM, ST_PRODUTO, VL_PERC_LUCRO, DS_COMPLETA_PROD) VALUES
+(2, 'A2249127102841', 'Raquete de tenis Wilson Aggressor', 279.00, 'Média', 'A', 0.30, 'Wilson Raquete de tênis Aggressor 112 para jogadores com um estilo de jogo agressivo, raquete extra longa para mais alcance');
+INSERT INTO MC_PRODUTO (CD_CATEGORIA, NR_CD_BARRAS_PROD, DS_PRODUTO, VL_UNITARIO, TP_EMBALAGEM, ST_PRODUTO, VL_PERC_LUCRO, DS_COMPLETA_PROD) VALUES
+(3, 'A2249127102841', 'Whiskas Sache para gatos adultos', 29.00, 'Pequena', 'A', 0.30, 'Ração úmida para gatos adultos, sabor frango');
+INSERT INTO MC_PRODUTO (CD_CATEGORIA, NR_CD_BARRAS_PROD, DS_PRODUTO, VL_UNITARIO, TP_EMBALAGEM, ST_PRODUTO, VL_PERC_LUCRO, DS_COMPLETA_PROD) VALUES
+(3, 'A2249127102841', 'Rasqueadeira Autolimpante', 59.00, 'Pequena', 'A', 0.25, 'SAÚDE E BEM-ESTAR DO ANIMAL: Auxilia na prevenção de bolas de pelos em gatos e promove a transpiração saudável em cães, adaptando-se a mudanças climáticas.');
+
+SELECT * FROM MC_PRODUTO;
+
+
+-- I) Cadastre duas categorias para os vídeos: Instalação do produto e Uso no cotidiano. Você é livre para cadastrar outras categorias, caso deseje.
+
+
+INSERT INTO MC_CATEGORIA_PROD (TP_CATEGORIA, DS_CATEGORIA, DT_INICIO, ST_CATEGORIA) VALUES
+('V', 'Instalação do produto', TO_DATE('12/03/2023', 'DD/MM/YYYY'), 'A');
+INSERT INTO MC_CATEGORIA_PROD (TP_CATEGORIA, DS_CATEGORIA, DT_INICIO, ST_CATEGORIA) VALUES
+('V', 'Uso no cotidiano', TO_DATE('13/03/2023', 'DD/MM/YYYY'), 'A');
+
+SELECT * FROM MC_CATEGORIA_PROD;
+
+
+-- J) Cadastre 2 vídeos de produtos na tabela MC_SGV_PRODUTO_VIDEO e associe esses 2 vídeos em um único produto já cadastrado. Associe também as categorias adequadas ao vídeo.
+
+
+SELECT * FROM MC_SGV_PRODUTO_VIDEO;
+
+INSERT INTO MC_SGV_PRODUTO_VIDEO (CD_PRODUTO, NR_SEQUENCIA, CD_CATEGORIA, ST_VIDEO_PROD) VALUES
+(1, 1, 4, 'A');
+INSERT INTO MC_SGV_PRODUTO_VIDEO (CD_PRODUTO, NR_SEQUENCIA, CD_CATEGORIA, ST_VIDEO_PROD) VALUES
+(2, 1, 5, 'A');
+
+
+-- K) Por fim, cadastre 2 visualizações de vídeos de produtos na tabela MC_SGV_VISUALIZACAO_VIDEO e associe a um cliente a seu critério.
+
+SELECT * FROM MC_SGV_VISUALIZACAO_VIDEO;
+
+INSERT INTO MC_SGV_VISUALIZACAO_VIDEO (CD_VISUALIZACAO_VIDEO, NR_CLIENTE, CD_PRODUTO, NR_SEQUENCIA, DT_VISUALIZACAO, NR_HORA_VISUALIZACAO, NR_MINUTO_VIDEO, NR_SEGUNDO_VIDEO) VALUES
+(1, 4, 1, 1, TO_DATE('12/03/2023', 'DD/MM/YYYY'), 11, 23, 41);
+INSERT INTO MC_SGV_VISUALIZACAO_VIDEO (CD_VISUALIZACAO_VIDEO, NR_CLIENTE, CD_PRODUTO, NR_SEQUENCIA, DT_VISUALIZACAO, NR_HORA_VISUALIZACAO, NR_MINUTO_VIDEO, NR_SEGUNDO_VIDEO) VALUES
+(2, 5, 2, 1, TO_DATE('13/03/2023', 'DD/MM/YYYY'), 09, 21, 51);
+
+
+-- L) Confirme todas as transações pendentes (muito importante).
+
+COMMIT;
+
+
+-- M) Selecione um específico funcionário e atualize o Cargo e aplique 12% de aumento de salário.
+
+UPDATE MC_FUNCIONARIO
+SET VL_SALARIO = VL_SALARIO*1.12
+WHERE CD_FUNCIONARIO = 11; -- Atualizando o salário do funcionário com código 11
+
+SELECT * FROM MC_FUNCIONARIO;
+
+
+-- N) Atualize o nome de um departamento a sua escolha, utilizando como filtro o nome do departamento antes de ser atualizado.
+
+
+UPDATE MC_DEPTO
+SET NM_DEPTO = 'TECNOLOGIA DA INFORMAÇÃO E DADOS'
+WHERE NM_DEPTO = 'TECNOLOGIA DA INFORMAÇÃO';
+
+SELECT * FROM MC_DEPTO;
+
+
+
+-- O)  Atualize a data de nascimento de um cliente pessoa física. Defina a nova data como sendo 18/05/2002.
+
+
+SELECT * FROM MC_CLI_FISICA;
+
+UPDATE MC_CLI_FISICA
+SET DT_NASCIMENTO = TO_DATE('18/05/2002', 'DD/MM/YYYY')
+WHERE NR_CLIENTE = 4;
+
+
+-- P)  Desative um funcionário colocando o status como I(nativo) e também a data de desligamento como sendo a data de hoje (sysdate).
+
+SELECT * FROM MC_FUNCIONARIO;
+
+UPDATE MC_FUNCIONARIO
+SET ST_FUNC = 'I',
+DT_DESLIGAMENTO = TO_DATE(SYSDATE, 'DD/MM/YYYY')
+WHERE CD_FUNCIONARIO = 14;
+
+
+/* Q) Selecione um endereço de cliente e coloque o status como I(nativo) e preencha a data de término como sendo a data limite de entrega do trabalho.
+Utilize a função to_date para registrar esse novo valor da data. */
+
+SELECT * FROM MC_END_CLI;
+
+UPDATE MC_END_CLI
+SET ST_END = 'I',
+DT_TERMINO = TO_DATE('16/04/2024', 'DD/MM/YYYY')
+WHERE NR_CLIENTE = 2;
+
+
+-- R) Tente eliminar um estado que tenha uma cidade cadastrada. Isso foi possível? Justifique o motivo.
+
+SELECT * FROM MC_ESTADO;
+
+DELETE FROM MC_ESTADO
+WHERE SG_ESTADO = 'SP';
+
+-- Não foi possível executar o comando. Isso ocorreu pois a restrição de integridade FK foi violada. A tabela cidade possui uma relação/dependência com a tabela estado e, assim, o banco de dados evita a
+-- exclusão dos dados, evitando inconsistências.
+
+
+-- S) Selecione um produto e tente atualizar o status do produto com o status X. Isso foi possível? Justifique o motivo.
+
+SELECT * FROM MC_PRODUTO;
+
+UPDATE MC_PRODUTO
+SET ST_PRODUTO = 'X'
+WHERE CD_PRODUTO = 1;
+
+-- Não foi possível executar o comando. Isso ocorreu pois a restrição de verificação (CHECK) foi violada. No momento da criação da tabela de produtos definimos uma Constraint CHECK, onde a coluna
+-- ST_PRODUTO aceitaria apenas os valores I (Inativo) e A (Ativo). Assim, qualquer outro valor diferente dos definidos não serão aceitos, evitando cadastros.
+
+
+-- T) Confirme todas as transações pendentes.
+
+COMMIT;
+
+
+
