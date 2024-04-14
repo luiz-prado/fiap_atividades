@@ -30,16 +30,13 @@ def cadastrar_produto():
 
 def criar_arquivo_csv(produtos):
     try:
-        if len(produtos) < 5:
-            raise Exception("É necessário cadastrar no mínimo 5 produtos.")
-        else:
-            with open("Arquivo 1_5_arquivo_produto.csv", "a", newline="") as arquivo:
-                writer = csv.writer(arquivo)
-                writer.writerow(produtos.keys())
+        with open("Arquivo 1_5_arquivo_produto.csv", "a", newline="") as arquivo:
+            writer = csv.writer(arquivo)
+            writer.writerow(produtos.keys())
                 
-                for produto in produtos:
-                    writer.writerow([val[produto] for val in produto.values()])
-            print("Arquivo CSV criado com sucesso!")
+            for produto in produtos:
+                 writer.writerow([val[produto] for val in produto.values()])
+        print("Arquivo CSV criado com sucesso!")
     except Exception as erro:
         print("Não foi possivel carregar as informações:", erro)
 
