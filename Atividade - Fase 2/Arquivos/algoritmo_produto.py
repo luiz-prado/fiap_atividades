@@ -30,10 +30,9 @@ def cadastrar_produto():
 
 def criar_arquivo_csv(produtos):
     try:
-        with open("Arquivo 1_5_arquivo_produto.csv", "a", newline="") as arquivo:
+        with open("Arquivo 1_5_arquivo_produto.csv", "w", newline="") as arquivo:
             writer = csv.writer(arquivo)
             writer.writerow(produtos.keys())
-                
             for produto in produtos:
                  writer.writerow([val[produto] for val in produto.values()])
         print("Arquivo CSV criado com sucesso!")
