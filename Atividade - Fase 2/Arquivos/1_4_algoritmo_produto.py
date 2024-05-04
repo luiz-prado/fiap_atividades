@@ -33,7 +33,7 @@ def cadastrar_produto(): # Função para cadastrar produtos
             print("Erro desconhecido:", erro)    
             break
 
-        produtos.append({"Descricao": descricao, "Valor": valor, "Embalagem": embalagem}) # Adiciona o produto ao dicionário
+        produtos.append({"Descricao do produto": descricao, "Valor do produto": valor, "Tipo de embalagem": embalagem}) # Adiciona o produto ao dicionário
         
         resposta = input("Deseja cadastrar um novo produto? (sim/não): ") # Pergunta se deseja cadastrar um novo produto
         if resposta.lower() != "sim":
@@ -44,7 +44,7 @@ def cadastrar_produto(): # Função para cadastrar produtos
 def criar_csv(produtos): # Função para salvar os produtos em um arquivo CSV
     try:
         with open("1_5_arquivo_produto.csv", "w", newline="") as arquivo:
-            writer = csv.DictWriter(arquivo, fieldnames=["Descricao", "Valor", "Embalagem"]) # Cria o cabeçalho do arquivo
+            writer = csv.DictWriter(arquivo, fieldnames=["Descricao do produto", "Valor do produto", "Tipo de embalagem"])
             writer.writeheader()
             writer.writerows(produtos)
         print("Arquivo CSV criado com sucesso!")
